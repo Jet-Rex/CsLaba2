@@ -185,8 +185,7 @@ namespace AnimalOOP {
             Console.Write("Enter index: ");
             if (int.TryParse(Console.ReadLine(), out int index)) {
               manager.ShowAnimalByIndex(index);
-            }
-            else {
+            } else {
               Console.WriteLine("Invalid input.");
             }
             break;
