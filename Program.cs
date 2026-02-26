@@ -93,8 +93,7 @@ namespace AnimalOOP {
     public string SkinMoisture { get; private set; }
 
     public Amphibian(string nickname, int age, string habitat, string dietType, double weight, string skinMoisture)
-      : base(nickname, age, habitat, dietType, weight)
-    {
+      : base(nickname, age, habitat, dietType, weight) {
       SkinMoisture = skinMoisture;
     }
 
