@@ -12,6 +12,7 @@ namespace AnimalOOP
   // Base abstract class
   public abstract class Animal
   {
+
     public string Nickname { get; private set; }
     public int Age { get; private set; }
     public string Habitat { get; private set; }
@@ -34,9 +35,9 @@ namespace AnimalOOP
   }
 
   // Derived classes
-
   public class Mammal : Animal
   {
+
     public bool HasFur { get; private set; }
 
     public Mammal(string nickname, int age, string habitat, string dietType, double weight, bool hasFur)
@@ -53,6 +54,7 @@ namespace AnimalOOP
 
   public class Bird : Animal
   {
+
     public double WingSpan { get; private set; }
 
     public Bird(string nickname, int age, string habitat, string dietType, double weight, double wingSpan)
@@ -69,6 +71,7 @@ namespace AnimalOOP
 
   public class Fish : Animal
   {
+
     public string WaterType { get; private set; }
 
     public Fish(string nickname, int age, string habitat, string dietType, double weight, string waterType)
@@ -85,6 +88,7 @@ namespace AnimalOOP
 
   public class Reptile : Animal
   {
+
     public bool IsVenomous { get; private set; }
 
     public Reptile(string nickname, int age, string habitat, string dietType, double weight, bool isVenomous)
@@ -101,6 +105,7 @@ namespace AnimalOOP
 
   public class Amphibian : Animal
   {
+
     public string SkinMoisture { get; private set; }
 
     public Amphibian(string nickname, int age, string habitat, string dietType, double weight, string skinMoisture)
@@ -116,20 +121,21 @@ namespace AnimalOOP
   }
 
   // Singleton Manager
-
   public class AnimalManager
   {
-    private static AnimalManager instance;
+
+    private static AnimalManager s_instance;
 
     public static AnimalManager Instance
     {
       get
       {
-        if (instance == null)
+        if (s_instance == null)
         {
-          instance = new AnimalManager();
+          s_instance = new AnimalManager();
         }
-        return instance;
+
+        return s_instance;
       }
     }
 
@@ -153,13 +159,13 @@ namespace AnimalOOP
         return;
       }
 
-      for (int animalIndex = 0; animalIndex < animalList.Count; animalIndex++)
+      for (int animalIndex = 0; animalIndex < animalList.Count; ++animalIndex)
       {
         Console.WriteLine($"{animalIndex}: {animalList[animalIndex].GetInfo()}");
       }
     }
 
-public void ShowAnimalByIndex(int index)
+    public void ShowAnimalByIndex(int index)
     {
       if (index >= 0 && index < animalList.Count)
       {
@@ -172,12 +178,13 @@ public void ShowAnimalByIndex(int index)
     }
   }
 
-  // Program
-
+  // Program Entry Point
   class Program
   {
+
     static void Main(string[] args)
     {
+
       AnimalManager manager = AnimalManager.Instance;
 
       manager.AddAnimal(new Mammal("Barsik", 5, "Forest", "Predator", 4.5, true));
@@ -189,11 +196,13 @@ public void ShowAnimalByIndex(int index)
 
     private static void RunMenu()
     {
+
       AnimalManager manager = AnimalManager.Instance;
       bool isRunning = true;
 
       while (isRunning)
       {
+
         Console.WriteLine("\n--- Animal Manager ---");
         Console.WriteLine("1 - Show all animals");
         Console.WriteLine("2 - Show animal by index");
@@ -205,6 +214,7 @@ public void ShowAnimalByIndex(int index)
 
         switch (input)
         {
+
           case "1":
             manager.ShowAllAnimals();
             break;
@@ -238,6 +248,7 @@ public void ShowAnimalByIndex(int index)
 
     private static void CreateAnimalFromUserInput()
     {
+
       AnimalManager manager = AnimalManager.Instance;
 
       Console.WriteLine("Choose type:");
@@ -266,6 +277,7 @@ public void ShowAnimalByIndex(int index)
 
       switch (typeChoice)
       {
+
         case "1":
           Console.Write("Has fur (true/false): ");
           bool hasFur = bool.Parse(Console.ReadLine());
