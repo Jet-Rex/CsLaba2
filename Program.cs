@@ -103,7 +103,6 @@ namespace AnimalOOP {
     }
   }
 
-
   // Singleton Manager
   public class AnimalManager {
 
@@ -143,8 +142,7 @@ namespace AnimalOOP {
     public void ShowAnimalByIndex(int index) {
       if (index >= 0 && index < animalList.Count) {
         Console.WriteLine(animalList[index].GetInfo());
-      }
-      else {
+      } else {
         Console.WriteLine("Invalid index.");
       }
     }
