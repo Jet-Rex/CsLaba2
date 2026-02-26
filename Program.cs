@@ -7,11 +7,10 @@
 using System;
 using System.Collections.Generic;
 
-namespace AnimalOOP
-{
+namespace AnimalOOP {
+
   // Base abstract class
-  public abstract class Animal
-  {
+  public abstract class Animal {
 
     public string Nickname { get; private set; }
     public int Age { get; private set; }
@@ -19,8 +18,7 @@ namespace AnimalOOP
     public string DietType { get; private set; }
     public double Weight { get; private set; }
 
-    protected Animal(string nickname, int age, string habitat, string dietType, double weight)
-    {
+    protected Animal(string nickname, int age, string habitat, string dietType, double weight) {
       Nickname = nickname;
       Age = age;
       Habitat = habitat;
@@ -28,83 +26,69 @@ namespace AnimalOOP
       Weight = weight;
     }
 
-    public virtual string GetInfo()
-    {
+    public virtual string GetInfo() {
       return $"Nickname: {Nickname}, Age: {Age}, Habitat: {Habitat}, Diet: {DietType}, Weight: {Weight} kg";
     }
   }
 
   // Derived classes
-  public class Mammal : Animal
-  {
+  public class Mammal : Animal {
 
     public bool HasFur { get; private set; }
 
     public Mammal(string nickname, int age, string habitat, string dietType, double weight, bool hasFur)
-      : base(nickname, age, habitat, dietType, weight)
-    {
+      : base(nickname, age, habitat, dietType, weight) {
       HasFur = hasFur;
     }
 
-    public override string GetInfo()
-    {
+    public override string GetInfo() {
       return base.GetInfo() + $", Type: Mammal, Has Fur: {(HasFur ? "Yes" : "No")}";
     }
   }
 
-  public class Bird : Animal
-  {
+  public class Bird : Animal {
 
     public double WingSpan { get; private set; }
 
     public Bird(string nickname, int age, string habitat, string dietType, double weight, double wingSpan)
-      : base(nickname, age, habitat, dietType, weight)
-    {
+      : base(nickname, age, habitat, dietType, weight) {
       WingSpan = wingSpan;
     }
 
-    public override string GetInfo()
-    {
+    public override string GetInfo() {
       return base.GetInfo() + $", Type: Bird, Wing Span: {WingSpan} m";
     }
   }
 
-  public class Fish : Animal
-  {
+  public class Fish : Animal {
 
     public string WaterType { get; private set; }
 
     public Fish(string nickname, int age, string habitat, string dietType, double weight, string waterType)
-      : base(nickname, age, habitat, dietType, weight)
-    {
+      : base(nickname, age, habitat, dietType, weight) {
       WaterType = waterType;
     }
 
-    public override string GetInfo()
-    {
+    public override string GetInfo() {
       return base.GetInfo() + $", Type: Fish, Water Type: {WaterType}";
     }
   }
 
-  public class Reptile : Animal
-  {
+  public class Reptile : Animal {
 
     public bool IsVenomous { get; private set; }
 
     public Reptile(string nickname, int age, string habitat, string dietType, double weight, bool isVenomous)
-      : base(nickname, age, habitat, dietType, weight)
-    {
+      : base(nickname, age, habitat, dietType, weight) {
       IsVenomous = isVenomous;
     }
 
-    public override string GetInfo()
-    {
+    public override string GetInfo() {
       return base.GetInfo() + $", Type: Reptile, Venomous: {(IsVenomous ? "Yes" : "No")}";
     }
   }
 
-  public class Amphibian : Animal
-  {
+  public class Amphibian : Animal {
 
     public string SkinMoisture { get; private set; }
 
@@ -114,24 +98,20 @@ namespace AnimalOOP
       SkinMoisture = skinMoisture;
     }
 
-    public override string GetInfo()
-    {
+    public override string GetInfo() {
       return base.GetInfo() + $", Type: Amphibian, Skin Moisture: {SkinMoisture}";
     }
   }
 
+
   // Singleton Manager
-  public class AnimalManager
-  {
+  public class AnimalManager {
 
     private static AnimalManager s_instance;
 
-    public static AnimalManager Instance
-    {
-      get
-      {
-        if (s_instance == null)
-        {
+    public static AnimalManager Instance {
+      get {
+        if (s_instance == null) {
           s_instance = new AnimalManager();
         }
 
@@ -141,50 +121,38 @@ namespace AnimalOOP
 
     private List<Animal> animalList;
 
-    private AnimalManager()
-    {
+    private AnimalManager() {
       animalList = new List<Animal>();
     }
 
-    public void AddAnimal(Animal animal)
-    {
+    public void AddAnimal(Animal animal) {
       animalList.Add(animal);
     }
 
-    public void ShowAllAnimals()
-    {
-      if (animalList.Count == 0)
-      {
+    public void ShowAllAnimals() {
+      if (animalList.Count == 0) {
         Console.WriteLine("No animals in the system.");
         return;
       }
 
-      for (int animalIndex = 0; animalIndex < animalList.Count; ++animalIndex)
-      {
+      for (int animalIndex = 0; animalIndex < animalList.Count; ++animalIndex) {
         Console.WriteLine($"{animalIndex}: {animalList[animalIndex].GetInfo()}");
       }
     }
 
-    public void ShowAnimalByIndex(int index)
-    {
-      if (index >= 0 && index < animalList.Count)
-      {
+    public void ShowAnimalByIndex(int index) {
+      if (index >= 0 && index < animalList.Count) {
         Console.WriteLine(animalList[index].GetInfo());
       }
-      else
-      {
+      else {
         Console.WriteLine("Invalid index.");
       }
     }
   }
 
   // Program Entry Point
-  class Program
-  {
-
-    static void Main(string[] args)
-    {
-
+  class Program {
+    static void Main(string[] args) {
       AnimalManager manager = AnimalManager.Instance;
 
       manager.AddAnimal(new Mammal("Barsik", 5, "Forest", "Predator", 4.5, true));
@@ -194,14 +162,12 @@ namespace AnimalOOP
       RunMenu();
     }
 
-    private static void RunMenu()
-    {
+    private static void RunMenu() {
 
       AnimalManager manager = AnimalManager.Instance;
       bool isRunning = true;
 
-      while (isRunning)
-      {
+      while (isRunning) {
 
         Console.WriteLine("\n--- Animal Manager ---");
         Console.WriteLine("1 - Show all animals");
@@ -212,8 +178,7 @@ namespace AnimalOOP
 
         string input = Console.ReadLine();
 
-        switch (input)
-        {
+        switch (input) {
 
           case "1":
             manager.ShowAllAnimals();
@@ -221,12 +186,10 @@ namespace AnimalOOP
 
           case "2":
             Console.Write("Enter index: ");
-            if (int.TryParse(Console.ReadLine(), out int index))
-            {
+            if (int.TryParse(Console.ReadLine(), out int index)) {
               manager.ShowAnimalByIndex(index);
             }
-            else
-            {
+            else {
               Console.WriteLine("Invalid input.");
             }
             break;
@@ -246,8 +209,7 @@ namespace AnimalOOP
       }
     }
 
-    private static void CreateAnimalFromUserInput()
-    {
+    private static void CreateAnimalFromUserInput() {
 
       AnimalManager manager = AnimalManager.Instance;
 
@@ -275,9 +237,7 @@ namespace AnimalOOP
       Console.Write("Weight: ");
       double weight = double.Parse(Console.ReadLine());
 
-      switch (typeChoice)
-      {
-
+      switch (typeChoice) {
         case "1":
           Console.Write("Has fur (true/false): ");
           bool hasFur = bool.Parse(Console.ReadLine());
